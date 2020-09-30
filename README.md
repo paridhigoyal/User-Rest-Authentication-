@@ -7,6 +7,29 @@ This project consist of User authentication and authorization consists of User s
 - Django
 - MySQL Database
 
+# Project Strurture
+.
+├── db.sqlite3
+├── manage.py
+├── user_authentication_drf_app
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   ├── models.py
+│   ├── __pycache__
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+└── user_authentication_drf_project
+    ├── __init__.py
+    ├── __pycache__
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
 
 
 # Running locally
