@@ -4,12 +4,9 @@ from rest_auth.views import (LoginView, LogoutView, PasswordChangeView,
                              PasswordResetConfirmView, PasswordResetView,
                              UserDetailsView)
 from rest_framework import routers
-
 from . import views
 
-# from .views import RegisterAPIView, UpdateAPIView
 router = routers.DefaultRouter()
-# router.register(r'register', views.RegisterViewSet)
 
 
 urlpatterns = [
@@ -25,5 +22,6 @@ urlpatterns = [
     url(r'^password/change/$', PasswordChangeView.as_view(),
         name='rest_password_change'),
     path('register', views.RegisterAPIView.as_view()),
-    path('update', views.UpdateUserView.as_view()),
+    url(r'^change/(?P<username>[\w-]+)$',
+        views.UserProfileChangeAPIView.as_view(), name='changeProfile'),
 ]

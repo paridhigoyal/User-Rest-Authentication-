@@ -17,17 +17,19 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-class UpdateSerializer(serializers.ModelSerializer):
+class UserProfileChangeSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(required=False,
+                                     allow_blank=True,
+                                     initial="current username")
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name')
+        fields = [
+            'username',
+            'password',
+        ]
 
-# def update(self, instance, validated_data):
-#     instance.username = validated_data.get('username', instance.username)
-#     instance.email = validated_data.get('email', instance.email)
-#     instance.first_name = validated_data.get('first_name',
-#  instance.first_name)
-#     instance.last_name = validated_data.get('last_name', instance.last_name)
-#     instance.save()
-#     return instance
+    def update(self, instance, validated_data):
+        instance.username = validated_data.get('username', instance.username)
+        print('instance of username', instance.username)
+        return instance

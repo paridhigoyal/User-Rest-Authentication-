@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
-from rest_framework import generics, permissions
+from rest_framework import generics
 from rest_framework.permissions import AllowAny
-
-from .serializers import RegisterSerializer, UpdateSerializer
+from .serializers import RegisterSerializer, UserProfileChangeSerializer
 
 
 class RegisterAPIView(generics.CreateAPIView):
@@ -11,11 +10,6 @@ class RegisterAPIView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
 
 
-class UpdateUserView(generics.UpdateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UpdateSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def get_object(self):
-        queryset = User.objects.filter(user=self.request.user)
-        return queryset
+class UserProfileChangeAPIView(generics.UpdateAPIView):
+    serializer_class = UserProfileChangeSerializer
+    lookup_field = 'username'
